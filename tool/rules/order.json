@@ -1,0 +1,23 @@
+{
+  "classification_keywords": [
+    "発注書", "注文書", "ご注文", "発注", "Purchase Order",
+    "PO", "注文No", "発注番号", "ご発注", "御注文"
+  ],
+  "header": {
+    "date": ["発注日", "注文日", "日付", "Order Date"],
+    "amount": [
+      "発注金額", "注文金額", "合計金額", "合計", "Total Amount", "Total"
+    ],
+    "company": ["発注先", "納入先", "仕入先", "御中", "様", "Vendor", "Supplier"],
+    "number": ["発注書番号", "注文番号", "発注No", "PO No", "No.", "番号", "Order No"]
+  },
+  "detail_start_keywords": [
+    "品名", "品目", "商品名", "摘要", "内容",
+    "品　名", "品 名", "Description", "Item"
+  ],
+  "detail_end_keywords": [
+    "小計", "合計", "消費税", "税込", "税抜",
+    "発注金額", "注文金額",
+    "Subtotal", "Total", "Tax"
+  ]
+}

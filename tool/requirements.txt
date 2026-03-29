@@ -1,0 +1,14 @@
+# PDF テキスト抽出（優先: PyMuPDF, フォールバック: pdfplumber）
+PyMuPDF>=1.23.0
+pdfplumber>=0.10.0      # オプション（PyMuPDFで代替可能）
+
+# OCR（画像PDF対応）
+pytesseract>=0.3.10
+pdf2image>=1.17.0
+Pillow>=10.0.0
+
+# Excel出力
+openpyxl>=3.1.2
+
+# サンプルPDF生成（開発・テスト用、本番環境では不要）
+# reportlab>=4.0.0

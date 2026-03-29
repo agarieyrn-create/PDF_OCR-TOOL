@@ -1,0 +1,24 @@
+{
+  "classification_keywords": [
+    "請求書", "ご請求", "請求金額", "御請求", "支払期限",
+    "振込先", "お振込", "ご請求金額", "請求No", "請求番号",
+    "Invoice", "INVOICE"
+  ],
+  "header": {
+    "date": ["請求日", "発行日", "日付", "請求書日付", "Invoice Date"],
+    "amount": [
+      "請求金額", "合計金額", "ご請求金額", "税込合計",
+      "ご請求額", "御請求金額", "お支払金額", "Total"
+    ],
+    "company": ["請求先", "御中", "様", "Bill To"],
+    "number": ["請求書番号", "請求No", "No.", "番号", "Invoice No", "Invoice#"]
+  },
+  "detail_start_keywords": [
+    "品名", "品目", "商品名", "摘要", "内容",
+    "品　名", "品 名", "Description", "Item"
+  ],
+  "detail_end_keywords": [
+    "小計", "合計", "消費税", "税込", "税抜",
+    "Subtotal", "Total", "Tax"
+  ]
+}
