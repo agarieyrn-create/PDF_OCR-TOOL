@@ -39,7 +39,7 @@ except ImportError:
     HAS_DND = False
 
 # ツールモジュールのパスを通す
-TOOL_DIR = Path(__file__).parent
+from app_path import APP_DIR as TOOL_DIR
 sys.path.insert(0, str(TOOL_DIR))
 
 from main import (

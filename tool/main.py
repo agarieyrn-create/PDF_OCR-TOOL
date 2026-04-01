@@ -22,6 +22,7 @@ import openpyxl
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
 
+from app_path import APP_DIR
 from pdf_reader import extract_text_from_pdf
 from ocr import ocr_pdf
 from classifier import classify_document
@@ -269,7 +270,7 @@ def results_to_excel_rows(
 # ---------------------------------------------------------------------------
 
 def main() -> None:
-    base_dir    = Path(__file__).parent
+    base_dir    = APP_DIR
     config_path = base_dir / "config.json"
     config      = load_config(str(config_path))
 
