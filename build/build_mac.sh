@@ -1,33 +1,35 @@
 #!/bin/bash
 # ==================================================
-#  PDF OCR Tool  Mac ビルドスクリプト
+#  PDF OCR Tool - Mac Build Script
 # ==================================================
 set -e
-
 cd "$(dirname "$0")"
 
 echo "============================================"
-echo " PDF OCR Tool  Mac ビルドスクリプト"
+echo " PDF OCR Tool - Mac Build Script"
 echo "============================================"
 echo ""
 
-# ── ① PyInstaller 確認 ──
-echo "[1/5] PyInstaller を確認しています..."
+# ----- Step 1: Check PyInstaller -----
+echo "[Step 1/5] Checking PyInstaller..."
 if ! pip3 show pyinstaller &>/dev/null; then
-    echo "PyInstaller をインストールしています..."
+    echo "  Installing PyInstaller..."
     pip3 install pyinstaller
 fi
+echo "  OK"
 
-# ── ② 古いビルドを削除 ──
-echo "[2/5] 以前のビルドを削除しています..."
+# ----- Step 2: Clean previous build -----
+echo "[Step 2/5] Cleaning previous build..."
 rm -rf dist __pycache__
+echo "  OK"
 
-# ── ③ ビルド実行 ──
-echo "[3/5] ビルドを実行しています（数分かかります）..."
+# ----- Step 3: Run PyInstaller -----
+echo "[Step 3/5] Building app (this may take a few minutes)..."
 pyinstaller pdf_ocr_tool.spec --noconfirm
+echo "  OK"
 
-# ── ④ データファイルをコピー ──
-echo "[4/5] 設定ファイルをコピーしています..."
+# ----- Step 4: Copy config and data files -----
+echo "[Step 4/5] Copying config and rules..."
 
 DEST="dist/PDF_OCR_Tool"
 
@@ -38,24 +40,22 @@ mkdir -p "$DEST/input"
 mkdir -p "$DEST/output"
 mkdir -p "$DEST/logs"
 
-echo "PDFをここに入れてください。" > "$DEST/input/ここにPDFを入れてください.txt"
+echo "Put your PDF files here." > "$DEST/input/README.txt"
+echo "  OK"
 
-# ── ⑤ ZIP 圧縮 ──
-echo "[5/5] ZIP ファイルを作成しています..."
+# ----- Step 5: Create ZIP -----
+echo "[Step 5/5] Creating ZIP..."
 rm -f PDF_OCR_Tool_Mac.zip
-cd dist
-zip -r ../PDF_OCR_Tool_Mac.zip PDF_OCR_Tool
-cd ..
+cd dist && zip -r ../PDF_OCR_Tool_Mac.zip PDF_OCR_Tool && cd ..
+echo "  OK"
 
 echo ""
 echo "============================================"
-echo " ビルド完了！"
+echo " Build Complete!"
 echo "============================================"
 echo ""
-echo " 配布ファイル: build/PDF_OCR_Tool_Mac.zip"
-echo " 内容確認:     build/dist/PDF_OCR_Tool/"
+echo " For distribution : build/PDF_OCR_Tool_Mac.zip"
+echo " Test run folder  : build/dist/PDF_OCR_Tool/PDF_OCR_Tool"
 echo ""
-echo " ユーザーへの配布手順:"
-echo "   1. PDF_OCR_Tool_Mac.zip を渡す"
-echo "   2. 解凍して PDF_OCR_Tool をダブルクリック"
+echo " Send the ZIP to users. They just unzip and double-click PDF_OCR_Tool"
 echo ""
