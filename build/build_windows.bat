@@ -58,20 +58,51 @@ echo   OK
 REM ----- Step 5: Create ZIP -----
 echo [Step 5/5] Creating ZIP...
 if exist "PDF_OCR_Tool_Windows.zip" del "PDF_OCR_Tool_Windows.zip"
-powershell -NoProfile -Command "Compress-Archive -Path 'dist\PDF_OCR_Tool' -DestinationPath 'PDF_OCR_Tool_Windows.zip'"
-if %errorlevel% neq 0 (
-    echo WARNING: ZIP creation failed. Use the folder directly: dist\PDF_OCR_Tool\
-) else (
-    echo   OK
+
+REM Wait for antivirus / file indexer to release file handles
+echo   Waiting for file handles to be released...
+timeout /t 5 /nobreak >nul
+
+REM Try tar first (built-in on Windows 10 build 17063+, most reliable)
+where tar >nul 2>&1
+if %errorlevel% equ 0 (
+    echo   Using tar...
+    tar -a -c -f PDF_OCR_Tool_Windows.zip -C dist PDF_OCR_Tool
+    if %errorlevel% equ 0 (
+        echo   OK
+        goto :build_done
+    )
+    echo   tar failed, trying PowerShell...
 )
 
+REM Fallback: PowerShell Compress-Archive
+echo   Using PowerShell...
+powershell -NoProfile -ExecutionPolicy Bypass -Command ^
+    "try { Compress-Archive -Path 'dist\PDF_OCR_Tool' -DestinationPath 'PDF_OCR_Tool_Windows.zip' -Force; Write-Host 'ZIP OK' } catch { Write-Host ('ZIP ERROR: ' + $_.Exception.Message) }"
+if exist "PDF_OCR_Tool_Windows.zip" (
+    echo   OK
+    goto :build_done
+)
+
+REM Both methods failed - skip ZIP and show folder path instead
+echo.
+echo   NOTE: ZIP creation was skipped (files may be locked by antivirus).
+echo   Distribution folder is ready at:
+echo   %~dp0dist\PDF_OCR_Tool\
+echo   You can zip it manually in Explorer (right-click - Send to - Compressed folder).
+
+:build_done
 echo.
 echo ============================================
 echo  Build Complete!
 echo ============================================
 echo.
-echo  For distribution : build\PDF_OCR_Tool_Windows.zip
-echo  Test run folder  : build\dist\PDF_OCR_Tool\PDF_OCR_Tool.exe
+if exist "PDF_OCR_Tool_Windows.zip" (
+    echo  For distribution : %~dp0PDF_OCR_Tool_Windows.zip
+) else (
+    echo  For distribution : %~dp0dist\PDF_OCR_Tool\  (zip manually)
+)
+echo  Test run folder  : %~dp0dist\PDF_OCR_Tool\PDF_OCR_Tool.exe
 echo.
 echo  Send the ZIP to users. They just unzip and double-click PDF_OCR_Tool.exe
 echo.
