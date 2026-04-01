@@ -305,7 +305,7 @@ class PDFOCRApp:
         s.configure("Status.TLabel",
                     background="#E0E0E0", padding=(8, 4),
                     font=("Yu Gothic UI", 9))
-        s.configure("Prog.TProgressbar", thickness=16, troughcolor="#E0E0E0",
+        s.configure("Horizontal.Prog.TProgressbar", thickness=16, troughcolor="#E0E0E0",
                     background=ACCENT_COLOR)
 
     # ------------------------------------------------------------------ #
@@ -372,7 +372,7 @@ class PDFOCRApp:
         self._prog_var = tk.DoubleVar(value=0)
         ttk.Progressbar(
             bar, variable=self._prog_var, maximum=100,
-            style="Prog.TProgressbar", length=180,
+            style="Horizontal.Prog.TProgressbar", length=180,
         ).pack(side=tk.RIGHT, padx=8)
 
     # ------------------------------------------------------------------ #
