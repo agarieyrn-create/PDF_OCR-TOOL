@@ -1,0 +1,28 @@
+# ===================================================
+# PDF OCR ツール  requirements.txt
+# ===================================================
+
+# --- PDF テキスト抽出 ---
+# PyMuPDF を優先使用。pdfplumber はフォールバック用。
+PyMuPDF>=1.23.0
+pdfplumber>=0.10.0
+
+# --- OCR (画像PDF対応) ---
+# Tesseract OCR を別途インストールしてください:
+#   Windows: https://github.com/UB-Mannheim/tesseract/wiki
+#   Mac:     brew install tesseract tesseract-lang
+#   Linux:   sudo apt install tesseract-ocr tesseract-ocr-jpn
+pytesseract>=0.3.10
+pdf2image>=1.17.0
+Pillow>=10.0.0
+
+# --- Excel出力 ---
+openpyxl>=3.1.2
+
+# --- GUI ドラッグ&ドロップ (オプション) ---
+# インストールするとファイルのD&Dが有効になります
+# pip install tkinterdnd2
+# tkinterdnd2>=0.3.0
+
+# --- サンプルPDF生成 (開発・テスト用のみ) ---
+# pip install reportlab

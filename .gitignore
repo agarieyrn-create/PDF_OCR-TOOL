@@ -1,0 +1,19 @@
+# 処理結果・ログ（リポジトリに含めない）
+tool/output/
+tool/logs/
+tool/input/*.pdf
+tool/input/*.PDF
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db

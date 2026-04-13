@@ -1,0 +1,22 @@
+{
+  "classification_keywords": [
+    "納品書", "納品", "納品確認", "お届け", "御納品",
+    "納品先", "配送先", "Delivery", "DELIVERY", "納品書番号"
+  ],
+  "header": {
+    "date": ["納品日", "出荷日", "日付", "発送日", "Delivery Date"],
+    "amount": [
+      "合計金額", "合計", "金額合計", "総額", "Total"
+    ],
+    "company": ["納品先", "お届け先", "御中", "様", "Ship To"],
+    "number": ["納品書番号", "納品No", "伝票番号", "No.", "番号", "Delivery No"]
+  },
+  "detail_start_keywords": [
+    "品名", "品目", "商品名", "摘要", "内容",
+    "品　名", "品 名", "Description", "Item"
+  ],
+  "detail_end_keywords": [
+    "小計", "合計", "消費税", "税込", "税抜",
+    "Subtotal", "Total", "Tax"
+  ]
+}

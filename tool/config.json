@@ -1,0 +1,10 @@
+{
+  "input_dir": "input",
+  "output_dir": "output",
+  "log_dir": "logs",
+  "rules_dir": "rules",
+  "output_file": "result.xlsx",
+  "ocr_language": "jpn+eng",
+  "ocr_dpi": 300,
+  "encoding": "utf-8"
+}
